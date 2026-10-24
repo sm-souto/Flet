@@ -80,5 +80,4 @@ def main(page: ft.Page):
         lista_despesas,
     )   
 
-
 ft.run(main)
