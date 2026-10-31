@@ -2,7 +2,7 @@ import flet as ft
 from models.model_tarefa import Tarefa
 
 
-# LAYOUT DA TAREFA
+# Layout da tarefa
 class TarefaCard(ft.Container):
 
     def __init__(self, tarefa: Tarefa, on_alternar_conclusao, on_remover):

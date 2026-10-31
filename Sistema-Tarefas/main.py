@@ -4,6 +4,29 @@ from models.sql_tarefa import SQL_Tarefa
 from controllers.controle_tarefa import ControleTarefa
 
 
+def exibir_tela_erro_configuracao(page: ft.Page, mensagem: str):
+    page.clean()
+    page.add(
+        ft.Column(
+            controls=[
+                ft.Icon(ft.Icons.CLOUD_OFF, color=ft.Colors.RED_600, size=36),
+                ft.Text(
+                    "Não foi possível conectar ao Supabase",
+                    size=22,
+                    weight=ft.FontWeight.BOLD,
+                ),
+                ft.Text(mensagem),
+                ft.Text(
+                    "Confira o arquivo .env e as configurações da tabela 'tarefas'."
+                ),
+            ],
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            spacing=12,
+        )
+    )
+    page.update()
+
+
 def main(page: ft.Page):
     page.title = "Gerenciador de Tarefas Gamificado (MVC + Supabase)"
     page.theme_mode = ft.ThemeMode.LIGHT
@@ -13,7 +36,10 @@ def main(page: ft.Page):
         cliente_supabase = connect_supabase()
         verificar_tabela_tarefas(cliente_supabase)
     except Exception as erro_conexao:
-        exibir_tela_erro_configuracao(page, str(erro_conexao))
+        exibir_tela_erro_configuracao(
+            page,
+            str(erro_conexao),
+        )
         return
 
     sql_tarefas = SQL_Tarefa(cliente_supabase)
