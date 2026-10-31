@@ -14,13 +14,18 @@ class Tarefa:
             self.concluida = True
             
     def para_dicionario(self):
-        dados = {'nome':self.nome, 'tipo':self.tipo, 'xp':self.xp, 'concluida':self.concluida}
+        dados = {
+            'nome':self.nome,
+            'tipo':self.tipo,
+            'xp':self.xp,
+            'concluida':self.concluida
+        }
         if self.id is not None:
             dados['id'] = self.id
         
         return dados
     
-    @staticmethod
+    @staticmethod # Função sem depender da classe Tarefa / Adicionando os dados do BD
     def de_dicionario(dados: dict):
         return Tarefa(
             id_tarefa = dados.get('id'),
