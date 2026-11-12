@@ -40,7 +40,6 @@ def gastos_view(page: ft.Page):
         controller.remover_despesa(card_despesa.despesa_id)
         lista_despesas.controls.remove(card_despesa)
         atualizar_total()
-        page.update()
 
     def adicionar_despesa(evento):
         texto_erro.value = ""
@@ -50,15 +49,13 @@ def gastos_view(page: ft.Page):
 
         if not descricao_digitada or not valor_digitado:
             texto_erro.value = "Preencha todos os campos antes de registrar."
-            page.update()
             return
 
         valor_limpo = valor_digitado.strip().replace(",", ".")
-
         valor_float = float(valor_limpo)
+
         if valor_float <= 0:
             texto_erro.value = "O valor deve ser maior que zero."
-            page.update()
             return
 
         despesa_salva = controller.adicionar_despesa(
@@ -78,7 +75,6 @@ def gastos_view(page: ft.Page):
 
         input_descricao.value = ""
         input_valor.value = ""
-        page.update()
 
     def carregar_despesas_salvas():
         despesas = controller.listar_despesas()
@@ -92,8 +88,8 @@ def gastos_view(page: ft.Page):
             lista_despesas.controls.append(card)
         atualizar_total()
 
-    botao_registrar = ft.ElevatedButton(
-        text="Registrar",
+    botao_registrar = ft.Button(
+        content="Registrar",
         icon=ft.Icons.ADD,
         on_click=adicionar_despesa,
         bgcolor=ft.Colors.GREEN_600,
@@ -113,7 +109,7 @@ def gastos_view(page: ft.Page):
                 ft.Divider(),
             ]
         ),
-        padding=ft.padding.only(bottom=12),
+        padding=12,
     )
 
     page.add(
@@ -126,4 +122,3 @@ def gastos_view(page: ft.Page):
     )
 
     carregar_despesas_salvas()
-    page.update()

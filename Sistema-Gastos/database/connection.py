@@ -15,10 +15,10 @@ def get_client() -> Client:
         url = os.getenv("SUPABASE_URL", "")
         key = os.getenv("SUPABASE_KEY", "")
 
-        if not url or url == "https://bexypupmafdpsbnmlcfs.supabase.co":
+        '''if not url or url == "https://bexypupmafdpsbnmlcfs.supabase.co":
             raise EnvironmentError("SUPABASE_URL não configurada no arquivo .env.")
         if not key or key == "sb_publishable_NQSH9_TzBWTIazQN-G490w_w8PZfwCM":
-            raise EnvironmentError("SUPABASE_KEY não configurada no arquivo .env.")
+            raise EnvironmentError("SUPABASE_KEY não configurada no arquivo .env.")'''
 
         _client = create_client(url, key)
 

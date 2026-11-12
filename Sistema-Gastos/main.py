@@ -6,5 +6,4 @@ def main(page: ft.Page):
     gastos_view(page)
 
 
-if __name__ == "__main__":
-    ft.run(main)
+ft.run(main)
